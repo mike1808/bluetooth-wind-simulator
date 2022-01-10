@@ -5,7 +5,10 @@
 #include <Wire.h>
 
 #include "config.h"
+
+#if defined(ENABLE_DASH)
 #include "dash.h"
+#endif
 
 #define BT_SERIAL_BUFSIZE 50
 #define FPS 30
@@ -17,6 +20,7 @@ BluetoothSerial SerialBT;
 
 char btSerialBuffer[BT_SERIAL_BUFSIZE];
 
+#if defined(ENABLE_DASH)
 void drawBackgroud() {
   display.drawXBitmap(0, 0, dash_bits, dash_width, dash_height, SSD1306_WHITE);
 }
@@ -40,11 +44,6 @@ void drawRPM(int percent) {
   drawRevs(display, percent);
 }
 
-void drawRPM(int percent) {
-  Serial.printf("Setting rpm to %d%%\r\n", percent);
-  drawRevs(display, percent);
-}
-
 void drawSpeed(int speed) {
   Serial.printf("Setting speed to %d\r\n", speed);
 
@@ -53,11 +52,6 @@ void drawSpeed(int speed) {
   display.setTextColor(SSD1306_WHITE);
   display.setCursor(80, 22);
   display.println(speed);
-}
-
-void controlFan(int power) {
-  Serial.printf("Setting fan power to %d%%\r\n", power);
-  fanDutyCycle = float(power) / 100 * ((1 << 16) - 1);
 }
 
 void drawLap(int lap) {
@@ -77,12 +71,18 @@ void resetDisplay() {
   drawSpeed(0);
   drawLap(0);
 }
+#endif
+
+void controlFan(int power) {
+  Serial.printf("Setting fan power to %d%%\r\n", power);
+  fanDutyCycle = float(power) / 100 * ((1 << 16) - 1);
+}
 
 void processCommand() {
   char cmd = btSerialBuffer[0];
 
   switch (cmd) {
-#ifdef ENABLE_DASH
+#if defined(ENABLE_DASH)
   case 'S': {
     int arg0;
     sscanf(&btSerialBuffer[1], "%d", &arg0);
@@ -127,7 +127,7 @@ void processCommand() {
     Serial.printf("Unknown command: %c\r\n", cmd);
   }
 
-#ifdef ENABLE_DASH
+#if defined(ENABLE_DASH)
   display.display();
 #endif
 }
@@ -136,7 +136,7 @@ void setup() {
   Serial.begin(115200);
   SerialBT.begin(BT_NAME);
 
-#ifdef ENABLE_DASH
+#if defined(ENABLE_DASH)
   Wire.setPins(OLED_SDA, OLED_SLK);
   // SSD1306_SWITCHCAPVCC = generate display voltage from 3.3V internally
   if (!display.begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS)) {

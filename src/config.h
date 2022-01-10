@@ -3,10 +3,6 @@
 #define FAN_PWM_Res 16
 #define FAN_PWM_Freq 25000 // 25 kHz
 
-#ifndef ENABLE_DASH
-#define ENABLE_DASH 1
-#endif
-
 #define OLED_SLK 22
 #define OLED_SDA 21
 #define OLED_RESET 16
