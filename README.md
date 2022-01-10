@@ -25,9 +25,8 @@ Attach your fan's PWM pin (green one) to the pin `FAN_GPIO` (5 by default), atta
 
 ## Usage
 
-After successful build go ahead to your OS bluetooth settings and pair with the new device. It should be called *SimHub Dash* by default.
-After that open SimHub and navigate to Settings -> Plugins and enable "Custom Serial Device". Follow [the official wiki](https://github.com/SHWotever/SimHub/wiki/Custom-serial-devices) if you need help.
-Then go to "CUSTOM SERIAL DEVICE" menu on the left and click on "Add new custom device". Click on "Import settings" and import the [assets/simhub.shsds] file (click on "View Raw" and download the file in Github).
-Then you have to select the correct COM port for your Bluetooth device. You can use Window's Device Manager to find it out. Disconnect your SimHub Dash device and the reconnect and look which COM ports appear in the list of "Serial devices".
-
-After setting up the serial device navigate to "Shakeit" section and enable "Speed" property. Click on "Test" to see if your fan is spinning.
+* After successful build go ahead to your OS bluetooth settings and pair with the new device. It should be called *SimHub Dash* by default.
+* After that open SimHub and navigate to Settings -> Plugins and enable "Custom Serial Device". Follow [the official wiki](https://github.com/SHWotever/SimHub/wiki/Custom-serial-devices) if you need help.
+* Then go to "CUSTOM SERIAL DEVICE" menu on the left and click on "Add new custom device". Click on "Import settings" and import the [assets/simhub.shsds] file (click on "View Raw" and download the file in Github).
+* Then you have to select the correct COM port for your Bluetooth device. You can use Window's Device Manager to find it out. Disconnect your SimHub Dash device and the reconnect and look which COM ports appear in the list of "Serial devices".
+* After setting up the serial device navigate to "Shakeit" section and enable "Speed" property. Click on "Test" to see if your fan is spinning.
