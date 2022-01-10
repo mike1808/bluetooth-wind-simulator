@@ -1,0 +1,79 @@
+{
+  "AutomaticReconnect": true,
+  "SerialPortName": "COM7",
+  "StartupDelayMs": 0,
+  "IsConnecting": false,
+  "IsEnabled": true,
+  "LogIncomingData": false,
+  "IsConnected": false,
+  "BaudRate": 115200,
+  "UpdateMessages": [
+    {
+      "Message": {
+        "Interpreter": 1,
+        "Expression": "function make(cmd, args) { return '{' + cmd + args.join(',') + '}' }\r\n\r\nreturn make('R', [Math.round($prop('CarSettings_CurrentDisplayedRPMPercent') || 0)])"
+      },
+      "IsEnabled": true,
+      "MaximumFrequency": 30
+    },
+    {
+      "Message": {
+        "Interpreter": 1,
+        "Expression": "function make(cmd, args) { return '{' + cmd + args.join(',') + '}' }\r\n\r\nreturn make('S', [Math.round($prop('SpeedMph') || 0)])"
+      },
+      "IsEnabled": true,
+      "MaximumFrequency": 0
+    },
+    {
+      "Message": {
+        "Interpreter": 1,
+        "Expression": "function make(cmd, args) { return '{' + cmd + args.join(',') + '}' }\r\n\r\nreturn make('W', [$prop('ShakeITMotorsV3Plugin.Export.wind.All') || 0])"
+      },
+      "IsEnabled": true,
+      "MaximumFrequency": 60
+    },
+    {
+      "Message": {
+        "Interpreter": 1,
+        "Expression": "function make(cmd, args) { return '{' + cmd + args.join(',') + '}' }\r\n\r\nreturn make('G', [$prop('Gear') || \"0\"])"
+      },
+      "IsEnabled": true,
+      "MaximumFrequency": 0
+    },
+    {
+      "Message": {
+        "Interpreter": 1,
+        "Expression": "function make(cmd, args) { return '{' + cmd + args.join(',') + '}' }\r\n\r\nreturn make('L', [$prop('CurrentLap') || \"0\"])"
+      },
+      "IsEnabled": true,
+      "MaximumFrequency": 0
+    },
+    {
+      "Message": {
+        "Expression": ""
+      },
+      "IsEnabled": true,
+      "MaximumFrequency": 60
+    }
+  ],
+  "OnConnectMessage": {
+    "Interpreter": 1,
+    "Expression": "return '{C}'"
+  },
+  "OnDisconnectMessage": {
+    "Interpreter": 1,
+    "Expression": "return '{C}'"
+  },
+  "DtrEnable": false,
+  "RtsEnable": false,
+  "EditorExpanded": true,
+  "Name": "Custom Serial device",
+  "Description": "Serial device",
+  "LastErrorDate": "2022-01-09T23:32:30.2520111-08:00",
+  "LastErrorMessage": "The semaphore timeout period has expired.\r\n",
+  "IsFreezed": false,
+  "SettingsBuilder": {
+    "Settings": [],
+    "IsEditMode": false
+  }
+}
